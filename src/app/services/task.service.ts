@@ -1,3 +1,4 @@
+import { environment } from './../../environment.prod';
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
@@ -7,8 +8,7 @@ import { Task } from '../models/Task';
 })
 export class TaskService {
 
-
-  private readonly baseUrl = 'http://localhost:8081/api/todo';
+  private readonly baseUrl = environment.apiUrl;
   private readonly http = inject(HttpClient);
 
   constructor() { }
