@@ -1,4 +1,4 @@
-import { environment } from './../../environment.prod';
+import { environment } from '../../environments/environment.prod';
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';

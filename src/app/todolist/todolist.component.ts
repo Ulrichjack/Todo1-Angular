@@ -10,10 +10,9 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-todolist',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule, TaskFormComponent, TaskListComponent,RouterModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule,RouterModule],
   templateUrl: './todolist.component.html',
   styleUrl: './todolist.component.css'
 })
-export class TodolistComponent  {
+export class TodolistComponent  {}
 
-}
