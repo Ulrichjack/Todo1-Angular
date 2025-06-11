@@ -1,0 +1,54 @@
+<div class="search">
+  <form class="d-flex gap-2 mb-3" (ngSubmit)="onSearch()">
+  <input class="form-control" type="text" placeholder="Titre" [(ngModel)]="searchTitle" name="searchTitle" />
+
+  <select class="form-control" [(ngModel)]="searchPriority" name="searchPriority">
+    <option value="">Toutes priorités</option>
+    <option *ngFor="let p of priorityOptions" [value]="p">{{ p }}</option>
+  </select>
+  <button class="btn btn-primary">Rechercher</button>
+  <!-- <button class="btn btn-secondary" (click)="reloadTasks()">Réinitialiser</button> -->
+
+
+</form>
+</div>
+
+
+<button class="btn btn-secondary mb-10" [routerLink]="['/tasks/new']">Nouvelle Tâche</button>
+
+
+
+
+<table class="table w-70 mx-auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Task</th>
+      <th>Complete</th>
+      <th>Priorité</th>
+
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of sortedTask; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td [ngClass]="{ 'text-decoration-line-through': t.complete }">{{ t.title }}</td>
+      <td><input type="checkbox" [checked]="t.complete" (change)="onToggleComplete(t)" /></td>
+      <td>{{t.priority}}</td>
+      <td>
+         <button class="btn btn-info btn-sm me-1 ms-2" (click)="onDetails(t)">Détails</button>
+        <button class="btn btn-danger btn-sm ms-2" (click)="onDelete(t.id!)">Delete</button>
+        <button class="btn btn-success btn-sm ms-2" (click)="onEdit(t)">Modifier</button>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+
+ <!-- <td>{{ t.description }}</td>
+      <td>{{ t.dateCreated | date: 'short' }}</td>
+      <td>{{ t.lastUpdated | date: 'short' }}</td> -->

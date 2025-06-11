@@ -1,0 +1,99 @@
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <div class="row mb-3">
+    <div class="col-md-6">
+ <label for="title">Task</label>
+
+
+
+
+
+    <input
+      type="text"
+      id="title"
+      class="form-control "
+      formControlName="title"
+      placeholder="Enter Task"
+    />
+    <div *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched">
+      <small class="text-danger" *ngIf="taskForm.get('title')?.errors?.['required']">Title requis</small>
+      <small class="text-danger" *ngIf="taskForm.get('title')?.errors?.['minlength']">Min 3 caractères</small>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      class="form-control "
+      formControlName="description"
+      placeholder="Enter Description"
+    ></textarea>
+  </div>
+
+    </div>
+
+  <div class="row mb-3">
+ <div class="col-md-6">
+    <label for="dateDefinitive">Date</label>
+    <input
+      type="datetime-local"
+      id="dateDefinitive"
+      class="form-control "
+      formControlName="dateDefinitive"
+    />
+    <div *ngIf="taskForm.get('dateDefinitive')?.invalid && taskForm.get('dateDefinitive')?.touched">
+      <small class="text-danger" *ngIf="taskForm.get('dateDefinitive')?.errors?.['required']">Date requise</small>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+  <label for="priority">Priorité</label>
+  <select
+    id="priority"
+    class="form-control "
+    formControlName="priority"
+  >
+    <option *ngFor="let priority of priorityOptions" [value]="priority">
+      {{ priority }}
+    </option>
+  </select>
+</div>
+
+  </div>
+
+
+
+<div class="row mb-3">
+    <div class="col-md-6">
+      <label for="recurentType">Récurrence</label>
+      <select
+        id="recurentType"
+        class="form-control"
+        formControlName="recurentType"
+      >
+        <option *ngFor="let recurence of recurentOptions" [value]="recurence">
+          {{ recurence }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2 mt-2">
+    <button
+      type="submit"
+      class="btn"
+      [ngClass]="isEditMode ? 'btn-warning' : 'btn-primary'"
+    >
+      {{ isEditMode ? 'Modifier' : 'Ajouter' }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="onCancel()"
+      *ngIf="isEditMode"
+    >
+      Annuler
+    </button>
+  </div>
+</form>
+
+<a routerLink="/tasks" class="btn btn-secondary mt-2">Retour à la liste</a>

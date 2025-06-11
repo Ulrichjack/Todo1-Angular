@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <div *ngIf="task; else loading" class="card">
+    <div class="card-header">
+      <h2>Détails de la tâche</h2>
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <h4>Titre: {{ task.title }}</h4>
+      </div>
+      <div class="mb-3">
+        <p><strong>Description:</strong> {{ task.description || 'Aucune description' }}</p>
+      </div>
+      <div class="mb-3">
+        <p><strong>Statut:</strong> {{ task.complete ? 'Terminée' : 'En cours' }}</p>
+      </div>
+      <div class="mb-3">
+        <p><strong>Priorité:</strong> {{ task.priority }}</p>
+      </div>
+      <div class="mb-3">
+        <p><strong>Date de création:</strong> {{ task.dateCreated ? (task.dateCreated | date: 'dd/MM/yyyy HH:mm') : 'Non définie' }}</p>
+      </div>
+      <div class="mb-3">
+        <p><strong>Dernière modification:</strong> {{ task.lastUptated ? (task.lastUptated| date: 'dd/MM/yyyy HH:mm') : 'Non définie' }}</p>
+      </div>
+      <div class="mb-3">
+        <p><strong>Date d'échéance:</strong> {{ task.dateDefinitive ? (task.dateDefinitive | date: 'dd/MM/yyyy HH:mm') : 'Non définie' }}</p>
+      </div>
+      <div class="mb-3">
+        <p><strong>Récurrence:</strong> {{ task.recurentType || 'Aucune' }}</p>
+      </div>
+
+      <div class="d-flex gap-2">
+        <button class="btn btn-primary" [routerLink]="['/tasks/edit', task.id]">Modifier</button>
+        <button class="btn btn-secondary" routerLink="/tasks">Retour à la liste</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="text-center mt-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Chargement...</span>
+      </div>
+      <p>Chargement des détails de la tâche...</p>
+    </div>
+  </ng-template>
+</div>
